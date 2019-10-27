@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require("path");
 
-const List = require('list');
+const { List } = require('list');
 
 let curDirectory;
 let scanSubDir;
@@ -16,6 +16,6 @@ for (curDirectory of mainDirScan) {
 
 	for (currentFile of scanSubDir) {
 		currentFunction = currentFile.split('.').pop().join('.')
-		new Function(`${curDirectory}.prototype['${currentFunction}'] = require('./${curDirectory}/${currentFile}')`)();
+		eval(`${curDirectory}.prototype['${currentFunction}'] = require('./${curDirectory}/${currentFile}')`);
 	}
 }
