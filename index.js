@@ -15,7 +15,7 @@ for (curDirectory of mainDirScan) {
 	scanSubDir = fs.readdirSync(path.join(__dirname, curDirectory));
 
 	for (currentFile of scanSubDir) {
-		currentFunction = currentFile.split('.').pop().join('.')
-		eval(`${curDirectory}.prototype['${currentFunction}'] = require('./${curDirectory}/${currentFile}')`);
+        currentFunction = require('util').inspect(currentFile.split('.').slice(0, -1).join('.'));
+		eval(`${curDirectory}.prototype[${currentFunction}] = require('./${curDirectory}/${currentFile}')`);
 	}
 }
