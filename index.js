@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require("path");
 
 const { List } = require('list');
+const { inspect } = require('util')
 
 let curDirectory;
 let scanSubDir;
@@ -15,7 +16,7 @@ for (curDirectory of mainDirScan) {
 	scanSubDir = fs.readdirSync(path.join(__dirname, curDirectory));
 
 	for (currentFile of scanSubDir) {
-        currentFunction = require('util').inspect(currentFile.split('.').slice(0, -1).join('.'));
+		currentFunction = inspect(currentFile.split('.').slice(0, -1).join('.'));
 		eval(`${curDirectory}.prototype[${currentFunction}] = require('./${curDirectory}/${currentFile}')`);
 	}
 }
