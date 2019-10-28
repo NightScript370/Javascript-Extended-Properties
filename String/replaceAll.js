@@ -1,4 +1,11 @@
-module.exports = function (search, replacement) {
+/**
+ * Replaces every instance of a string in a string with a replacement.
+ * @example "Hello everyone".replaceAll("everyone", "world") => "Hello world"
+ * @param {string} search
+ * @param {string} replacement
+ * @returns {string}
+ */
+module.exports = function replaceAll(search, replacement) {
 	var target = this;
 	let result = target;
 
