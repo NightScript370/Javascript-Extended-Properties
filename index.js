@@ -17,6 +17,6 @@ for (curDirectory of mainDirScan) {
 
 	for (currentFile of scanSubDir) {
 		currentFunction = inspect(currentFile.split('.').slice(0, -1).join('.'));
-		eval(`${curDirectory}.prototype[${currentFunction}] = require('./${curDirectory}/${currentFile}')`);
+		eval(`Object.defineProperty(${curDirectory}.prototype, "${currentFunction}", { value: require('./${curDirectory}/${currentFile}'), enumerable: false});`);
 	}
 }
